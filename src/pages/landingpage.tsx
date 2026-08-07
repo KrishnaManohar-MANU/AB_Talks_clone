@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { Code2, Trophy, Zap, Github, ArrowRight } from 'lucide-react';
+import { Code2, Trophy, Zap, GitHub, ArrowRight } from 'lucide-react';
 
 export default function LandingPage() {
   const navigate = useNavigate();
@@ -44,7 +44,7 @@ export default function LandingPage() {
             onClick={() => window.open('https://github.com', '_blank')}
             className="px-8 py-4 bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-xl font-semibold text-lg flex items-center justify-center gap-2 transition-all"
           >
-            <Github size={20} />
+            <GitHub size={20} />
             View on GitHub
           </button>
         </div>
