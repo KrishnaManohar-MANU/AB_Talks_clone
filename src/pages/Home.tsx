@@ -1,18 +1,14 @@
-
-import { ArrowRight, CheckCircle, ExternalLink, Flame, Users, Zap } from 'lucide-react';
-import { TRACKS } from '../data';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import { ArrowRight, CheckCircle, ExternalLink, Flame, Users, Zap, Quote, Star } from 'lucide-react';
+import { TRACKS } from '../data';
 
 export default function Home() {
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     document.title = 'ABTalks — 60 Days of Code';
   }, []);
-  
-  
 
   return (
     <div className="min-h-screen bg-white text-black">
@@ -20,7 +16,12 @@ export default function Home() {
         
         {/* Header */}
         <header className="px-5 md:px-8 pt-6 pb-4 flex items-center justify-between sticky top-0 bg-white/80 backdrop-blur-md z-50 border-b border-transparent">
-          <div className="text-xl md:text-2xl font-black tracking-tight">ABTalks</div>
+          <div 
+            className="text-2xl md:text-3xl tracking-wider text-black"
+            style={{ fontFamily: "'Permanent Marker', cursive" }}
+          >
+            AB TALKS
+          </div>
           <div className="text-[11px] md:text-xs font-bold px-3 py-1.5 bg-black text-white rounded-full tracking-wide uppercase">
             48hr Hackathon
           </div>
@@ -64,25 +65,34 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Desktop visual */}
+          {/* Desktop: Exact Preview Card */}
           <div className="hidden md:flex md:flex-1 md:justify-center">
-            <div className="relative w-80 h-80 md:w-96 md:h-96">
-              <div className="absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-300 rounded-[2rem] rotate-6 opacity-40" />
-              <div className="absolute inset-0 bg-white border-2 border-gray-100 rounded-[2rem] shadow-2xl p-8 flex flex-col justify-between">
-                <div className="flex items-center gap-2">
+            <div className="relative w-80 md:w-96">
+              {/* Tilted shadow card behind */}
+              <div className="absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-300 rounded-[2rem] rotate-6 opacity-50" />
+              
+              {/* Main white card */}
+              <div className="relative bg-white border border-gray-100 rounded-[2rem] shadow-2xl p-6 flex flex-col h-80">
+                {/* Browser dots */}
+                <div className="flex items-center gap-2 mb-8">
                   <div className="w-3 h-3 rounded-full bg-red-400" />
                   <div className="w-3 h-3 rounded-full bg-yellow-400" />
                   <div className="w-3 h-3 rounded-full bg-green-400" />
                 </div>
-                <div className="space-y-3">
-                  <div className="h-3 bg-gray-100 rounded-full w-3/4" />
-                  <div className="h-3 bg-gray-100 rounded-full w-1/2" />
-                  <div className="h-3 bg-gray-100 rounded-full w-5/6" />
+                
+                {/* Gray placeholder lines */}
+                <div className="space-y-3 flex-1">
+                  <div className="h-3 bg-gray-100 rounded-full w-full" />
                   <div className="h-3 bg-gray-100 rounded-full w-2/3" />
+                  <div className="h-3 bg-gray-100 rounded-full w-5/6" />
+                  <div className="h-3 bg-gray-100 rounded-full w-3/4" />
                 </div>
-                <div className="flex items-center gap-2 text-sm font-bold bg-gray-50 px-4 py-3 rounded-xl w-fit">
+
+                {/* Streak badge */}
+                <div className="flex items-center gap-2 text-sm font-bold bg-gray-50 px-4 py-2.5 rounded-xl w-fit">
                   <Flame size={16} className="text-orange-500" />
-                  <span>12 day streak 🔥</span>
+                  <span>12 day streak</span>
+                  <Flame size={16} className="text-orange-500" />
                 </div>
               </div>
             </div>
@@ -127,6 +137,80 @@ export default function Home() {
                 <div className="font-bold text-sm md:text-base">{track.name}</div>
               </div>
             ))}
+          </div>
+        </section>
+
+        {/* TRUST SECTION */}
+        <section className="px-5 md:px-8 py-8 md:py-14 bg-gray-50/50 border-y border-gray-100">
+          <div className="text-center mb-8 md:mb-10">
+            <h2 className="text-xs font-black uppercase tracking-[0.15em] text-gray-400 mb-2">Trust & Proof</h2>
+            <p className="text-2xl md:text-3xl font-black">Built for students. Loved by builders.</p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-8 md:mb-10">
+            {[
+              { num: '60', label: 'Days of structured learning' },
+              { num: '2,400+', label: 'Projects shipped to GitHub' },
+              { num: '150+', label: 'Active student builders' },
+              { num: '4', label: 'Specialized tracks' },
+            ].map((stat, i) => (
+              <div key={i} className="bg-white border border-gray-100 rounded-2xl p-4 md:p-5 text-center hover:shadow-md transition-shadow duration-200">
+                <div className="text-2xl md:text-3xl font-black mb-1">{stat.num}</div>
+                <div className="text-xs md:text-sm text-gray-500 leading-tight">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+
+          <div className="space-y-3 md:grid md:grid-cols-3 md:gap-4 md:space-y-0">
+            {[
+              { 
+                quote: "I got 3 interview calls after recruiters saw my 60-day streak on LinkedIn.", 
+                name: "Priya R.", 
+                college: "IIT Madras",
+                stars: 5 
+              },
+              { 
+                quote: "The daily accountability changed how I code. No more tutorial hell.", 
+                name: "Arjun K.", 
+                college: "NIT Trichy",
+                stars: 5 
+              },
+              { 
+                quote: "From zero projects to a full GitHub portfolio. ABTalks forced me to ship.", 
+                name: "Sneha M.", 
+                college: "BITS Pilani",
+                stars: 5 
+              },
+            ].map((t, i) => (
+              <div key={i} className="bg-white border border-gray-100 rounded-2xl p-5 md:p-6 relative">
+                <Quote size={20} className="text-gray-200 mb-3" />
+                <p className="text-sm md:text-base text-gray-700 leading-relaxed mb-4 font-medium">"{t.quote}"</p>
+                <div className="flex items-center gap-1 mb-2">
+                  {Array.from({ length: t.stars }).map((_, j) => (
+                    <Star key={j} size={12} className="text-yellow-400 fill-yellow-400" />
+                  ))}
+                </div>
+                <div className="text-sm font-bold">{t.name}</div>
+                <div className="text-xs text-gray-400">{t.college}</div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 md:mt-10 pt-6 md:pt-8 border-t border-gray-200">
+            <p className="text-center text-xs font-bold uppercase tracking-[0.15em] text-gray-400 mb-4">
+              Students from top colleges trust ABTalks
+            </p>
+            <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm font-bold text-gray-400">
+              <span>IIT Bombay</span>
+              <span className="text-gray-200">|</span>
+              <span>IIT Madras</span>
+              <span className="text-gray-200">|</span>
+              <span>BITS Pilani</span>
+              <span className="text-gray-200">|</span>
+              <span>NIT Trichy</span>
+              <span className="text-gray-200">|</span>
+              <span>IIIT Hyderabad</span>
+            </div>
           </div>
         </section>
 

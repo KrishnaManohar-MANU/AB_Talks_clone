@@ -31,7 +31,8 @@ export const DAY_12 = {
 };
 
 export const USER = {
-  name: 'Rahul Sharma',
+ 
+  name: 'Krishna Manohar',
   college: 'IIT Bombay',
   track: 'web',
   streak: 12,

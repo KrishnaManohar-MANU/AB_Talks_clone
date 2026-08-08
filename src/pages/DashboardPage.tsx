@@ -1,19 +1,17 @@
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Flame, TrendingUp, Calendar, ChevronRight, Award, Clock, ArrowLeft } from 'lucide-react';
 import { USER, SUBMISSIONS, ACHIEVEMENTS, getStreakMessage } from '../data';
-import { useEffect } from 'react';
+
 export default function DashboardPage() {
   const navigate = useNavigate();
   const completedDays = SUBMISSIONS.filter(s => s.status === 'completed').length;
   const progressPercent = (completedDays / 60) * 100;
   const todaySub = SUBMISSIONS.find(s => s.day === 12);
-  
+
   useEffect(() => {
     document.title = 'Dashboard | ABTalks';
   }, []);
-
-  
-  
 
   return (
     <div className="min-h-screen bg-white text-black">
@@ -33,7 +31,10 @@ export default function DashboardPage() {
               <p className="text-sm text-gray-400">{USER.college} • {USER.track}</p>
             </div>
           </div>
-          <div className="w-10 h-10 md:w-11 md:h-11 bg-black text-white rounded-full flex items-center justify-center font-black text-sm cursor-pointer hover:scale-105 transition-transform duration-200">
+          <div 
+            className="w-10 h-10 md:w-11 md:h-11 bg-black text-white rounded-full flex items-center justify-center font-black text-sm hover:scale-105 transition-transform duration-200" 
+            title="Krishna Manohar"
+          >
             {USER.name.split(' ').map(n => n[0]).join('')}
           </div>
         </header>
@@ -145,7 +146,7 @@ export default function DashboardPage() {
                       </div>
                     </div>
                     {s.status === 'completed' && (
-                      <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center shadow-sm shadow-green-500/20">
+                      <div className="w-6 h-6 md:w-6 md:h-6 bg-green-500 rounded-full flex items-center justify-center shadow-sm shadow-green-500/20">
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                           <polyline points="20 6 9 17 4 12" />
                         </svg>
@@ -181,16 +182,16 @@ export default function DashboardPage() {
                 {ACHIEVEMENTS.map(a => (
                   <div 
                     key={a.id}
-                    className={`shrink-0 md:w-full w-32 md:flex md:items-center md:gap-4 p-4 md:p-4 rounded-2xl border transition-all duration-200
+                    className={`shrink-0 md:w-full w-32 md:flex md:items-center md:gap-4 p-4 md:p-4 rounded-2xl border text-center md:text-left transition-all duration-200
                       ${a.unlocked 
                         ? 'border-black bg-white shadow-sm' 
                         : 'border-gray-100 bg-gray-50/50 opacity-50 grayscale'}
                     `}
                   >
-                    <div className="text-3xl md:text-3xl mb-1 md:mb-0">{a.icon}</div>
+                    <div className="text-2xl md:text-3xl mb-1 md:mb-0">{a.icon}</div>
                     <div>
                       <div className="text-xs md:text-sm font-bold">{a.name}</div>
-                      <div className="text-[10px] md:text-xs text-gray-400 mt-0.5">{a.desc}</div>
+                      <div className="text-[10px] md:text-xs text-gray-500 mt-0.5">{a.desc}</div>
                     </div>
                   </div>
                 ))}
