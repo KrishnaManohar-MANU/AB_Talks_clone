@@ -1,0 +1,140 @@
+1. hey ! i am participating in a hackathon which is online mode and it's all vibe coding so can you tell me the tools which are excellent for storing ai logs and committing multiple times in git also they said video presentation gets extra marks , well tell me what should i do and tell me how to get help from you efficiently .
+
+2 . i honestly don't know anything about tech stack they said that the problem statement will be given to us at 8 pm and it's a 48 hrs hackathon so there is plenty of time
+
+3 . this is the current situation of my project now on to the next level do make it more functional and other things as well .
+    i have a dozen of errors now ! and this one is the one that i don't like the most !!
+
+4 . [plugin:vite:import-analysis] Failed to resolve import "../utils/aiLogger" from "src/pages/ChallengeDayPage.tsx". Does the file exist?
+  C:/Users/Administrator/OneDrive/Documents/48_hrs_hackathon/AB_Talks_clone/src/pages/ChallengeDayPage.tsx:6:22
+  4  |  import { ArrowLeft, Send, Loader2, CheckCircle, AlertCircle, Sparkles } from "lucide-react";
+  5  |  import { useChallenge } from "../store/ChallengeContext";
+  6  |  import { logAI } from "../utils/aiLogger";
+   |                         ^
+  7  |  var _jsxFileName = "C:/Users/Administrator/OneDrive/Documents/48_hrs_hackathon/AB_Talks_clone/src/pages/ChallengeDayP...
+  8  |  import { jsxDEV as _jsxDEV, Fragment as _Fragment } from "react/jsx-dev-runtime";
+    at TransformPluginContext._formatLog (file:///C:/Users/Administrator/OneDrive/Documents/48_hrs_hackathon/AB_Talks_clone/node_modules/vite/dist/node/chunks/node.js:31066:39)
+    at TransformPluginContext.error (file:///C:/Users/Administrator/OneDrive/Documents/48_hrs_hackathon/AB_Talks_clone/node_modules/vite/dist/node/chunks/node.js:31063:14)
+    at normalizeUrl (file:///C:/Users/Administrator/OneDrive/Documents/48_hrs_hackathon/AB_Talks_clone/node_modules/vite/dist/node/chunks/node.js:28008:18)
+    at async file:///C:/Users/Administrator/OneDrive/Documents/48_hrs_hackathon/AB_Talks_clone/node_modules/vite/dist/node/chunks/node.js:28076:30
+    at async Promise.all (index 5)
+    at async TransformPluginContext.transform (file:///C:/Users/Administrator/OneDrive/Documents/48_hrs_hackathon/AB_Talks_clone/node_modules/vite/dist/node/chunks/node.js:28044:4)
+    at async EnvironmentPluginContainer.transform (file:///C:/Users/Administrator/OneDrive/Documents/48_hrs_hackathon/AB_Talks_clone/node_modules/vite/dist/node/chunks/node.js:30851:14)
+    at async loadAndTransform (file:///C:/Users/Administrator/OneDrive/Documents/48_hrs_hackathon/AB_Talks_clone/node_modules/vite/dist/node/chunks/node.js:20619:26)
+    at async viteTransformMiddleware (file:///C:/Users/Administrator/OneDrive/Documents/48_hrs_hackathon/AB_Talks_clone/node_modules/vite/dist/node/chunks/node.js:25142:20)
+Click outside, press Esc key, or fix the code to dismiss.
+You can also disable this overlay by setting server.hmr.overlay to false in vite.config.ts.
+
+5 . npm : File C:\Program Files\nodejs\npm.ps1 cannot be loaded because running scripts is disabled on this 
+  system. For more information, see about_Execution_Policies at 
+  https:/go.microsoft.com/fwlink/?LinkID=135170.
+  At line:1 char:1
+    + npm install framer-motion lucide-react
+  + ~~~
+    + CategoryInfo          : SecurityError: (:) [], PSSecurityException
+    + FullyQualifiedErrorId : UnauthorizedAccess
+
+
+6 . i am literally seeing a white blank screen now !!
+
+7 . ok now it is like on the verge of getting spoiled i don't want that three things i want you to change 
+  1 . reduce the files it's like having 10 pens in my hand when i end up using 2 
+  2 . change the color theme to white and black or i'll leave that to you 
+  3 . change the cursor to pointer whenever user is going to click a function 
+
+8 . what are the frameworks we are using in this ?
+
+9 . this is what command prompt showed me :
+  Enumerating objects: 2969, done.
+  Counting objects: 100% (2969/2969), done.
+  Delta compression using up to 8 threads
+  Compressing objects: 100% (2932/2932), done.
+  Writing objects: 100% (2969/2969), done.
+  Total 2969 (delta 531), reused 0 (delta 0), pack-reused 0 (from 0)
+  Removing duplicate objects: 100% (256/256), done.
+  [main 00372f5] fix: correct lucide-react imports, restore full functionality
+   1 file changed, 2 insertions(+), 2 deletions(-)
+  the console shows this error :
+  Uncaught SyntaxError: The requested module '/node_modules/.vite/deps/lucide-react.js?v=cae5cd10' does not provide an export named 'GitHub' (at LandingPage.tsx:2:30)
+
+10 . after the first step that is after replacing the landing page file it came to life again now what should i do ?
+
+11 . no it's still there ! i did change the github to gitHub
+
+12 . even after push the LandingPage file is there in gituhub
+
+13 . On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+
+14 . i don't even have the landingpage file i have the same case file !
+
+15 . fatal: pathspec 'src/pages/landingpage.tsx' did not match any files
+
+16 . Volume in drive C has no label.
+ Volume Serial Number is BEAC-03B7
+
+ Directory of C:\Users\Administrator\OneDrive\Documents\48_hrs_hackathon\AB_Talks_clone\src\pages
+
+08/08/2026  01:00 PM    <DIR>          .
+08/08/2026  12:57 PM    <DIR>          ..
+08/08/2026  12:16 PM            11,033 DashboardPage.tsx
+08/08/2026  12:17 PM            11,579 DayPage.tsx
+08/08/2026  01:00 PM             7,601 LandingPage.tsx
+               3 File(s)         30,213 bytes
+               2 Dir(s)  114,608,189,440 bytes free
+
+17 . this error is showing :
+12:21:53.467 
+src/App.tsx(3,25): error TS2307: Cannot find module './pages/LandingPage' or its corresponding type declarations.
+12:21:53.479 
+src/pages/landingpage.tsx(2,30): error TS2305: Module '"lucide-react"' has no exported member 'Github'.
+
+18 . and now we will deploy after that we can make changes right ?
+
+19 . ok now the web loads now we have to much polishing and deployment first polish the web not just mobile size make it scalable
+
+20 . +-- @tailwindcss/vite@4.3.3
+| +-- @tailwindcss/node@4.3.3
+| | `-- tailwindcss@4.3.3
+| `-- tailwindcss@4.3.3
+`-- tailwindcss@3.4.19
+
+21 . hey just use import tailwind why the @tailwind ?, hey where are the two files step 1 and step 2 ones ?
+
+22 . now don't do anything that breaks the link and try to modify the web like making it more attractive , without changing the main theme and major things
+
+23 . Add a favicon — Put a simple .ico or .png in public/ named favicon.ico
+  Page titles — In each page component, add:
+  tsx
+  import { useEffect } from 'react';
+
+  useEffect(() => {
+  document.title = 'Dashboard | ABTalks';
+
+24 . what is this i don't know but i will do it tell me step by step
+
+}, []);
+Test on your phone — Open the live URL on your actual mobile browser
+
+25 . i think i messed up 
+[plugin:vite:oxc] Transform failed with 1 error:
+
+[PARSE_ERROR] Identifier `useNavigate` has already been declared
+   ╭─[ src/pages/Home.tsx:1:10 ]
+   │
+ 1 │ import { useNavigate } from 'react-router-dom';
+   │          ─────┬─────  
+   │               ╰─────── `useNavigate` has already been declared here
+   │ 
+ 5 │ import { useNavigate } from 'react-router-dom';
+   │          ─────┬─────  
+   │               ╰─────── It can not be redeclared here
+
+───╯ 
+
+26 . yes it's done , now i want you to change three things 
+  1 . make the abtalks on the home page to the image font and remove the fire where you added at the tab area 
+  2 . in the home page the book is empty isnt't it write something to make the users feel that ab talks is trustworthy for this you can use the real ab  talks achievements 
+  3 . i saw rs somewhere by clicking it , nothing happens change that and add if anywhere is empty use manu name or don't , instead of rs use km
