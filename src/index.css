@@ -2,15 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
 body {
   background-color: #f3f4f6;
   color: #000000;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 @media (min-width: 391px) {
   body {
     background-color: #e5e7eb;
   }
+}
+
+::selection {
+  background-color: #000;
+  color: #fff;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  ring: 2px;
+  ring-color: #000;
 }
