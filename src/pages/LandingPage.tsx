@@ -140,6 +140,7 @@ export default function LandingPage() {
             Most active between 10 PM — 2 AM
           </div>
         </section>
+        #this is making the deployment to crash 
 
         {/* Footer */}
         <footer className="px-5 md:px-8 py-8 text-center">
