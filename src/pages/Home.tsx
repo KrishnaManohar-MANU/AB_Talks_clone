@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { ArrowRight, CheckCircle, ExternalLink, Flame, Users, Zap, Quote, Star, Menu, X } from 'lucide-react';
 import { TRACKS } from '../data';
 
 export default function Home() {
   const navigate = useNavigate();
-  const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
 
   const openExternal = (url: string) => {
@@ -24,10 +23,6 @@ export default function Home() {
     document.querySelectorAll('.animate-reveal').forEach(el => observer.observe(el));
     return () => observer.disconnect();
   }, []);
-
-  useEffect(() => {
-    setMenuOpen(false);
-  }, [location.pathname]);
 
   useEffect(() => {
     if (!menuOpen) return;
