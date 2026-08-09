@@ -47,6 +47,7 @@ What's your biggest learning this week? 👇
       
       {!generated ? (
         <button
+          type="button"
           onClick={generate}
           disabled={!projectTitle}
           className="w-full py-3 bg-violet-600 text-white rounded-xl text-sm font-bold disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer hover:bg-violet-700 hover:shadow-lg hover:shadow-violet-500/20 active:scale-[0.98] transition-all duration-200"
@@ -61,6 +62,7 @@ What's your biggest learning this week? 👇
             className="w-full h-44 p-4 bg-white border border-gray-200 rounded-xl text-xs md:text-sm leading-relaxed resize-none focus:outline-none focus:border-violet-300 transition-colors"
           />
           <button
+            type="button"
             onClick={copy}
             className="w-full py-3 bg-black text-white rounded-xl text-sm font-bold flex items-center justify-center gap-2 cursor-pointer hover:bg-gray-800 hover:shadow-lg active:scale-[0.98] transition-all duration-200"
           >
@@ -80,6 +82,11 @@ export default function DayPage() {
   const [desc, setDesc] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [linkedinUrl, setLinkedinUrl] = useState('');
+  const canOpenLinkedin = Boolean(linkedinUrl.trim());
+
+  const openExternal = (url: string) => {
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
 
   useEffect(() => {
     document.title = 'Day 12 | ABTalks';
@@ -143,8 +150,9 @@ export default function DayPage() {
             {/* Submission Form */}
             <form onSubmit={handleSubmit} className="space-y-5 mt-6 md:mt-0">
               <div>
-                <label className="block text-sm font-bold text-gray-900 mb-2">Project Title</label>
+                <label htmlFor="project-title" className="block text-sm font-bold text-gray-900 mb-2">Project Title</label>
                 <input
+                  id="project-title"
                   type="text"
                   required
                   value={title}
@@ -155,11 +163,12 @@ export default function DayPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-bold text-gray-900 mb-2">GitHub Repository</label>
+                <label htmlFor="project-github-url" className="block text-sm font-bold text-gray-900 mb-2">GitHub Repository</label>
                 <div className="relative group">
                   <GitBranch size={16} className="absolute left-4 top-4 text-gray-400 group-focus-within:text-black transition-colors duration-200" />
                   <input
                     type="url"
+                    id="project-github-url"
                     required
                     value={githubUrl}
                     onChange={e => setGithubUrl(e.target.value)}
@@ -170,11 +179,12 @@ export default function DayPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-bold text-gray-900 mb-2">Live Deployment URL</label>
+                <label htmlFor="project-live-url" className="block text-sm font-bold text-gray-900 mb-2">Live Deployment URL</label>
                 <div className="relative group">
                   <ExternalLink size={16} className="absolute left-4 top-4 text-gray-400 group-focus-within:text-black transition-colors duration-200" />
                   <input
                     type="url"
+                    id="project-live-url"
                     required
                     value={liveUrl}
                     onChange={e => setLiveUrl(e.target.value)}
@@ -185,8 +195,9 @@ export default function DayPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-bold text-gray-900 mb-2">What did you build?</label>
+                <label htmlFor="project-description" className="block text-sm font-bold text-gray-900 mb-2">What did you build?</label>
                 <textarea
+                  id="project-description"
                   required
                   rows={3}
                   value={desc}
@@ -197,11 +208,12 @@ export default function DayPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-bold text-gray-900 mb-2">LinkedIn Post URL</label>
+                <label htmlFor="project-linkedin-url" className="block text-sm font-bold text-gray-900 mb-2">LinkedIn Post URL</label>
                 <div className="relative group">
                   <FileText size={16} className="absolute left-4 top-4 text-gray-400 group-focus-within:text-black transition-colors duration-200" />
                   <input
                     type="url"
+                    id="project-linkedin-url"
                     value={linkedinUrl}
                     onChange={e => setLinkedinUrl(e.target.value)}
                     placeholder="Paste your LinkedIn post link"
@@ -238,14 +250,17 @@ export default function DayPage() {
             
             <div className="space-y-3">
               <button 
+                type="button"
                 onClick={() => navigate('/dashboard')}
                 className="w-full py-4 bg-black text-white rounded-2xl font-bold cursor-pointer hover:bg-gray-900 hover:shadow-xl active:scale-[0.98] transition-all duration-200"
               >
                 Back to Dashboard
               </button>
               <button 
-                onClick={() => window.open(linkedinUrl || '#', '_blank')}
-                className="w-full py-4 border-2 border-gray-200 rounded-2xl font-bold text-sm md:text-base flex items-center justify-center gap-2 cursor-pointer hover:border-black hover:bg-gray-50 active:scale-[0.98] transition-all duration-200"
+                type="button"
+                disabled={!canOpenLinkedin}
+                onClick={() => openExternal(linkedinUrl)}
+                className="w-full py-4 border-2 border-gray-200 rounded-2xl font-bold text-sm md:text-base flex items-center justify-center gap-2 cursor-pointer hover:border-black hover:bg-gray-50 active:scale-[0.98] transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 <ExternalLink size={16} />
                 View LinkedIn Post
