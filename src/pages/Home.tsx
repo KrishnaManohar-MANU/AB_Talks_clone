@@ -177,14 +177,15 @@ export default function Home() {
           <h2 className="animate-reveal text-lg md:text-2xl font-bold mb-5 md:mb-8">Pick Your Track</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5">
             {TRACKS.map((track, i) => (
-              <div 
+              <button
                 key={track.id}
+                type="button"
                 onClick={() => navigate('/dashboard')}
-                className={`animate-reveal delay-${(i % 4) * 100} p-5 md:p-6 bg-white border border-gray-100 rounded-2xl cursor-pointer card-lift active:scale-[0.98] transition-all duration-300`}
+                className={`animate-reveal delay-${(i % 4) * 100} p-5 md:p-6 bg-white border border-gray-100 rounded-2xl cursor-pointer card-lift active:scale-[0.98] transition-all duration-300 text-left`}
               >
                 <div className="text-3xl md:text-4xl mb-3">{track.emoji}</div>
                 <div className="font-bold text-sm md:text-base">{track.name}</div>
-              </div>
+              </button>
             ))}
           </div>
         </section>

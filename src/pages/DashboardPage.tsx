@@ -96,9 +96,10 @@ export default function DashboardPage() {
 
             {/* Today's Task - Primary CTA */}
             <section className="px-5 md:px-0">
-              <div 
+              <button
+                type="button"
                 onClick={() => navigate('/day/12')}
-                className="group bg-white border-2 border-black rounded-3xl p-6 cursor-pointer hover:shadow-2xl hover:-translate-y-1 active:scale-[0.99] transition-all duration-300 relative overflow-hidden"
+                className="group w-full text-left bg-white border-2 border-black rounded-3xl p-6 cursor-pointer hover:shadow-2xl hover:-translate-y-1 active:scale-[0.99] transition-all duration-300 relative overflow-hidden"
               >
                 <div className="absolute top-0 right-0 w-40 h-40 bg-orange-50 rounded-full -translate-y-1/2 translate-x-1/3 group-hover:scale-150 transition-transform duration-700" />
                 <div className="relative">
@@ -125,41 +126,55 @@ export default function DashboardPage() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </button>
             </section>
 
             {/* Recent Submissions */}
             <section className="px-5 md:px-0">
               <h3 className="text-sm font-bold text-gray-900 mb-3 uppercase tracking-wide">Recent Submissions</h3>
               <div className="space-y-2.5 md:grid md:grid-cols-2 md:gap-3 md:space-y-0">
-                {SUBMISSIONS.slice().reverse().slice(0, 6).map(s => (
-                  <div 
-                    key={s.day}
-                    onClick={() => s.day === 12 ? navigate('/day/12') : null}
-                    className={`flex items-center justify-between p-4 rounded-2xl border transition-all duration-200
-                      ${s.day === 12 ? 'border-black bg-white cursor-pointer hover:shadow-md' : 'border-gray-100 bg-white'}
-                    `}
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className={`w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold transition-colors duration-200
-                        ${s.status === 'completed' ? 'bg-black text-white' : 'bg-gray-100 text-gray-400'}
-                      `}>
-                        {s.day}
+                {SUBMISSIONS.slice().reverse().slice(0, 6).map(s => {
+                  const itemContent = (
+                    <>
+                      <div className="flex items-center gap-3">
+                        <div className={`w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold transition-colors duration-200
+                          ${s.status === 'completed' ? 'bg-black text-white' : 'bg-gray-100 text-gray-400'}
+                        `}>
+                          {s.day}
+                        </div>
+                        <div>
+                          <div className="text-sm font-semibold text-gray-900">{s.title || 'Pending...'}</div>
+                          <div className="text-xs text-gray-400 font-medium">{s.date}</div>
+                        </div>
                       </div>
-                      <div>
-                        <div className="text-sm font-semibold text-gray-900">{s.title || 'Pending...'}</div>
-                        <div className="text-xs text-gray-400 font-medium">{s.date}</div>
-                      </div>
+                      {s.status === 'completed' && (
+                        <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
+                          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="20 6 9 17 4 12" />
+                          </svg>
+                        </div>
+                      )}
+                    </>
+                  );
+
+                  return s.day === 12 ? (
+                    <button
+                      key={s.day}
+                      type="button"
+                      onClick={() => navigate('/day/12')}
+                      className="w-full flex items-center justify-between p-4 rounded-2xl border border-black bg-white cursor-pointer hover:shadow-md transition-all duration-200 text-left"
+                    >
+                      {itemContent}
+                    </button>
+                  ) : (
+                    <div
+                      key={s.day}
+                      className="flex items-center justify-between p-4 rounded-2xl border border-gray-100 bg-white transition-all duration-200"
+                    >
+                      {itemContent}
                     </div>
-                    {s.status === 'completed' && (
-                      <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
-                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
-                          <polyline points="20 6 9 17 4 12" />
-                        </svg>
-                      </div>
-                    )}
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </section>
           </div>
