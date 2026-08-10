@@ -7,6 +7,10 @@ export default function Home() {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const openExternal = (url: string) => {
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
+
   useEffect(() => {
     document.title = 'ABTalks — 60 Days of Code';
     
@@ -19,6 +23,15 @@ export default function Home() {
     document.querySelectorAll('.animate-reveal').forEach(el => observer.observe(el));
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMenuOpen(false);
+    };
+    window.addEventListener('keydown', handleEsc);
+    return () => window.removeEventListener('keydown', handleEsc);
+  }, [menuOpen]);
 
   const navLinks = [
     { label: 'Dashboard', path: '/dashboard' },
@@ -44,6 +57,7 @@ export default function Home() {
               {navLinks.map(link => (
                 <button
                   key={link.path}
+                  type="button"
                   onClick={() => navigate(link.path)}
                   className="px-4 py-2 text-sm font-semibold text-gray-500 hover:text-black rounded-xl hover:bg-gray-50 transition-all duration-200"
                 >
@@ -51,6 +65,7 @@ export default function Home() {
                 </button>
               ))}
               <button
+                type="button"
                 onClick={() => navigate('/dashboard')}
                 className="ml-3 px-5 py-2.5 bg-black text-white text-sm font-bold rounded-xl hover:bg-gray-800 btn-press transition-all duration-200"
               >
@@ -60,9 +75,12 @@ export default function Home() {
 
             {/* Mobile Hamburger */}
             <button 
+              type="button"
               onClick={() => setMenuOpen(!menuOpen)}
               className="md:hidden w-10 h-10 flex items-center justify-center rounded-xl hover:bg-gray-50 transition-colors"
               aria-label="Toggle menu"
+              aria-expanded={menuOpen}
+              aria-controls="mobile-navigation-menu"
             >
               {menuOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
@@ -70,10 +88,11 @@ export default function Home() {
 
           {/* Mobile Menu Dropdown */}
           {menuOpen && (
-            <div className="md:hidden px-5 pb-4 border-t border-gray-50 bg-white/95 backdrop-blur-xl animate-reveal visible">
+            <div id="mobile-navigation-menu" className="md:hidden px-5 pb-4 border-t border-gray-50 bg-white/95 backdrop-blur-xl animate-reveal visible">
               {navLinks.map(link => (
                 <button
                   key={link.path}
+                  type="button"
                   onClick={() => { navigate(link.path); setMenuOpen(false); }}
                   className="block w-full text-left px-4 py-3 text-base font-semibold text-gray-700 hover:text-black hover:bg-gray-50 rounded-xl transition-all"
                 >
@@ -106,6 +125,7 @@ export default function Home() {
 
             <div className="animate-reveal delay-300 flex flex-col sm:flex-row gap-3">
               <button 
+                type="button"
                 onClick={() => navigate('/dashboard')}
                 className="group px-8 py-4 bg-black text-white rounded-2xl font-bold text-lg flex items-center justify-center gap-2 cursor-pointer hover:bg-gray-900 hover:shadow-xl hover:shadow-black/10 btn-press transition-all duration-300"
               >
@@ -113,7 +133,8 @@ export default function Home() {
                 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform duration-300" />
               </button>
               <button 
-                onClick={() => window.open('https://github.com', '_blank')}
+                type="button"
+                onClick={() => openExternal('https://github.com')}
                 className="px-8 py-4 border-2 border-gray-200 rounded-2xl font-bold text-lg flex items-center justify-center gap-2 cursor-pointer hover:border-black hover:bg-gray-50 btn-press transition-all duration-300"
               >
                 <ExternalLink size={20} />
@@ -177,14 +198,15 @@ export default function Home() {
           <h2 className="animate-reveal text-lg md:text-2xl font-bold mb-5 md:mb-8">Pick Your Track</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5">
             {TRACKS.map((track, i) => (
-              <div 
+              <button
                 key={track.id}
+                type="button"
                 onClick={() => navigate('/dashboard')}
-                className={`animate-reveal delay-${(i % 4) * 100} p-5 md:p-6 bg-white border border-gray-100 rounded-2xl cursor-pointer card-lift active:scale-[0.98] transition-all duration-300`}
+                className={`animate-reveal delay-${(i % 4) * 100} p-5 md:p-6 bg-white border border-gray-100 rounded-2xl cursor-pointer card-lift active:scale-[0.98] transition-all duration-300 text-left`}
               >
                 <div className="text-3xl md:text-4xl mb-3">{track.emoji}</div>
                 <div className="font-bold text-sm md:text-base">{track.name}</div>
-              </div>
+              </button>
             ))}
           </div>
         </section>
@@ -278,6 +300,7 @@ export default function Home() {
         {/* Footer */}
         <footer className="px-5 md:px-8 py-10 text-center">
           <button 
+            type="button"
             onClick={() => navigate('/dashboard')}
             className="text-sm md:text-base font-semibold text-gray-400 hover:text-black cursor-pointer transition-colors flex items-center justify-center gap-1.5 mx-auto"
           >
